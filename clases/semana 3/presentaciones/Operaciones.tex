@@ -1,0 +1,103 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\inputencoding{utf8}
+
+\mode<presentation> {
+    \usetheme{Madrid}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title[Operaciones]{Operaciones con Numeros Naturales Unarios}
+\author{Ernesto Rodriguez}
+\institute{
+    Universidad del Itsmo \\
+    \medskip \textit{erodriguez@unis.edu.gt}
+}
+
+\date[\today]{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{¿Que podemos hacer con los Numeros Naturales Unarios?}
+    \begin{itemize}
+        \item{De momento, no mucho...}
+        \item{¿Que necesitamos hacer con los numeros naturales unarios?}
+        \item{¿Es posible expresar estas necesidades mediante un grupo
+        peque\~no de operaciones (funciones)?}
+        \item{¿Como definimos estas operaciones?}
+        \item{¿Es posible construir algoritmos que lleven a cabo estas operaciones?}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Suma}
+\begin{itemize}
+    \item{{\bf Definici\'on: }Definimos la suma $\oplus$ para cualquier numero
+    natural unario $n$ y $m$ como:
+    \[
+        n\oplus m \left\{
+        \begin{array}{l l}
+            m & \mbox{si } n=o \\
+            n & \mbox{si } m=o \\
+            s(i\oplus m) & \mbox{si } n=s(i) \\
+        \end{array}
+        \right.
+    \]
+    }
+    \item{¿Es una definici\'on buena?}
+    \item{¿Pueden estas funciones definirse mediante algoritmos?}
+    \item{A todo esto, ¿Que es una funci\'on?}
+    \item{¿Ejemplos?}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Substituci\'on}
+\begin{itemize}
+    \item{{\bf Definici\'on: }A una agrupaci\'on de numeros naturales unarios y
+    operaciones se le conoce como expresi\'on y se abreviaran mediante variables como $\xi$}
+    \item{{\bf Ejemplo: }$m\oplus n \oplus l$ es una expresi\'on}
+    \item{{\bf Definici\'on: }Dado que $n=m$ y una expresi\'on arbitraria $\xi$,
+    es permitido substituir todas las ocurrencias de $n$ por $m$ en $\xi$.}
+    \item{{\bf Definici\'on: }La expresi\'on $\xi$ donde $m$ es sustituido por $n$
+    se denota como $[m \slash n]\xi$}
+    \item{{\bf Ejemplo: }Si $m=s(s(o))$ y $\xi=m\oplus x$, entonces $[m \slash s(s(o))]\xi=s(s(o))\oplus n$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{La adici\'on es asociativa}
+    {\bf Teorema (asociatividad):} Para todo numero natural unario $n,m,l$ se cumple:
+    $n\oplus(m\oplus l)=(n\oplus m)\oplus l$
+    \\[1cm]
+    {\bf Demostraci\'on: mediante inducci\'on en $l$}
+    \begin{itemize}
+        \item{{\bf Caso base: $l=o$}
+        \begin{itemize}
+            \item{$n\oplus (m\oplus o)=n \oplus m = (n \oplus m)\oplus o$}
+        \end{itemize}
+        }
+        \item{{\bf Caso inductivo: $l=s(i)$}
+        \begin{enumerate}
+            \item{{\bf Hipotesis inductiva: }Asumimos que $m\oplus (n\oplus i)=(m\oplus n)\oplus i$}
+            \item{Sabemos que $n\oplus(m\oplus s(i))=n\oplus s(m\oplus i)=s(n\oplus(m\oplus i))$}
+            \item{Sabemos que $s(n\oplus(m\oplus i))=s((n\oplus m)\oplus i)$ por la hipotesis inductiva}
+            \item{Concluimos que $s((n\oplus m)\oplus i)=(n\oplus m)\oplus s(i)$}
+        \end{enumerate}
+        }
+    \end{itemize}
+\end{frame}
+
+\end{document}
