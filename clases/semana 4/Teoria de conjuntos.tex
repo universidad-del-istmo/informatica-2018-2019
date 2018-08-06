@@ -1,0 +1,173 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\inputencoding{utf8}
+
+\mode<presentation> {
+    \usetheme{Madrid}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title[Conjuntos]{Teoria de Conjuntos}
+\author{Ernesto Rodriguez}
+\institute{
+    Universidad del Itsmo \\
+    \medskip \textit{erodriguez@unis.edu.gt}
+}
+
+\date[\today]{}
+
+\begin{document}
+
+\begin{frame}
+\frametitle{Conjuntos}
+\begin{itemize}
+\item{Los conjuntos sun una de las fundaciones de la matematica.}
+\item{No se intentaran de definir, se intentara entenderlos.}
+\item{Para entender un conjunto, hay que entender que elementos
+son miembros y cuales no.}
+\item{Los conjuntos se representan con:
+\begin{itemize}
+    \item{Listas de elementos: $\{a,b,c\}$}
+    \item{Describir los elementos en base a una propiedad:
+    $\{x|x \mathtt{tiene la propiedad} P\}$}
+    \item{Mencionando la pertenencia: $a\in S$ \'o $b\notin S$}
+    \item{{\bf Axioma}: Todos los elementos que podemos escribir
+    existen.}
+    \item{Es importante diferenciar objetos de su representaci\'on.}
+\end{itemize}
+}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Relaciones entre Conjuntos}
+    \begin{itemize}
+        \item{{\bf igualdad}: $(A\equiv B):\Leftrightarrow (
+            \forall x.x\in A\Leftrightarrow x \in B)$}
+        \item{{\bf subconjunto}: $(A\subseteq B:\Leftrightarrow
+        (\forall x.x\in A\Rightarrow x\in B)$}
+        \item{{\bf subconjunto propio}: $(A\subset B):\Leftrightarrow 
+        (A\subseteq B)\wedge (A\not\equiv B)$}
+        \item{{\bf superconjunto}: $(A\sqsupseteq B:\Leftrightarrow
+        (\forall x.x\in B\Rightarrow x\in A$}
+        \item{{\bf subconjunto propio}: $(A\supset B):\Leftrightarrow
+        (A\supseteq B)\wedge(A\not\equiv B)$}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Operaciones con Conjuntos}
+    \begin{itemize}
+        \item{{\bf union}: $A\cup B:=\{x|x\in A\vee x\in B\}$}
+        \item{{\bf union sobre una colecci\'on}: Sea $I$ un
+        \emph{conjunto} y $S_i$ una familia de conjuntos
+        con indices $I$, entonces $\cup_{i\in I}S_i := \{
+        x|\exists i\in I x.\in S_i \}$}
+        \item{{\bf intersecci\'on}: $A\cap B := \{x|x\in A\wedge x\in B \}$}
+        \item{{\bf intersecci\'on de una colecci\'on}: Sea $I$ un
+        \emph{conjunto} y $S_i$, una familia de conjuntos con
+        indices pertenecientes a $I$, entonces $\cap_{i\in I}S_i:=
+        \{x|\forall i\in I.x\in S_i\}$}
+        \item{{\bf diferencia de conjuntos}: $A\backslash B:=\{x
+        |x\in A\wedge x\not\in B\}$}
+        \item{{\bf conjunto de subconjuntos}: $\mathcal{P}(A)$ o
+        $\{\}^{A}:=\{S|S\subseteq A\}$}
+        \item{{\bf el conjunto vacio}: $\forall x.x\not\in \varnothing$}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operaciones en Conjuntos (cont.)}
+\begin{itemize}
+    \item{{\bf Producto cartesiano}: $A\times B:=\{\langle a,b\rangle |
+    a\in A \wedge b\in B\}$. $\langle a,b \rangle$ es una \emph{pareja}}
+    \item{{\bf Producto cartesiano orden $n$}: $A_1\times\ldots\times A_n := \{
+        \langle a_1,\ldots,a_n\rangle | \forall i.1\leq i \leq n \Rightarrow
+        a_i\in A_i$}
+    \item{{\bf Espacio cartesiano $n$-dimensional}: $A^n := \{
+        \langle a_1,\ldots,a_n \rangle | 1\leq i\leq n \Rightarrow
+        a_i\in A \}$, $\langle a_1,\ldots,a_n\rangle$ es un \emph{vector}}
+        \item{{\bf Definicion:} se escribe $\cup_{i=1}^{n}S_i$ para
+        el conjunto $\cup_{i\in\{i | 1\leq i \leq n \}}$}
+        \item{{\bf Definicion:} se escribe $\cap_{i=1}^{n}S_i$ para
+        el conjunto $\cap_{i\in\{i | 1\leq i \leq n \}}$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tama\~nos de Conjuntos}
+\begin{itemize}
+    \item{{\bf Definici\'on}: El \emph{tama\~no} (\#$A$) de un
+    conjunto $A$ es el numero de elementos en el conjunto.}
+    \item{{\bf Conjetura}:
+    \begin{itemize}
+        \item{$\#\{a,b,c\}=3$}
+        \item{$\#\mathbb{N}=\infty$}
+        \item{$\#(A\cup B)\leq \#A+\#B$}
+        \item{$\#(A\cap B)\leq \mathtt{min}(\#A,\#B)$}
+        \item{$\#(A\times B)=\#A*\#B$}
+    \end{itemize}
+    }
+    \item{¿Como demostramos estas propiedades?}
+    \item{A todo esto, ¿Que significa ``numero de objetos''?}
+    \item{{\bf Idea}: Es necesario asignarle a cada elemento
+    de un conjunto un numero natural unario}
+    \item{¿Como asociamos elementos de un conjunto a elementos
+    de otros conjuntos?}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Los conjuntos son impresionantes}
+\begin{itemize}
+    \item{Los conjuntos parecen simples, pero son \emph{poderosos}}
+    \item{Hay conjuntos muy grandes. e.j. ``El conjunto $\mathcal{S}$ de todos los conjuntos'':
+    \begin{itemize}
+        \item{Contiene el conjunto $\varnothing$}
+        \item{Para todo objeto $O$, tenemos que $\{O\}, \{\{O\}\}$, $\{O,\{O\}\},\ldots\in\mathcal{S}$}
+        \item{Contiene todas las uniones, intersecciones y conjuntos de conjuntos}
+        \item{Se contiene a si mismo $\mathcal{S}\in\mathcal{S}$}
+    \end{itemize}
+    }
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{El conjunto $\mathcal{S}$}
+    \begin{itemize}
+        \item{{\bf Propuesta}: El conjunto $\mathcal{S'}$ de todos los
+        conjuntos que no se contienen a si mismo}
+        \item{{\bf Pregunta}: ¿$\mathcal{S'}\in\mathcal{S'}$?
+        \begin{itemize}
+            \item{Supongamos que si, entonces $\mathcal{S'}\not\in\mathcal{S'}$
+            ya que $\mathcal{S'}$ solo contiene objetos que no se contienen a si mismos}
+            \item{Supongamos que no, entonces $\mathcal{S'}\in\mathcal{S'}$ ya que
+            $\mathcal{S'}$ contiene a los conjuntos que no se contienen a si mismo}
+        \end{itemize}
+        }
+        \item{De cualquier forma, tanto $\mathcal{S'}\in\mathcal{S'}$
+        y $\mathcal{S'}\not\in\mathcal{S'}$ son ciertos, lo cual es una
+        contradicci\'on}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Jerga Matematica}
+    \begin{itemize}
+        \item{¿Nos proteje la \emph{jerga matematica}?}
+        \item{{\bf No}: $\mathcal{S'}:=\{m|m\not\in m\}$}
+        \item{La \emph{jerga matematica} nos permite construir
+        enunciados contradictorios que son ``gramaticalmente''
+        validos}
+        \item{Hay que tener cuidado al construir conjuntos!}
+    \end{itemize}
+\end{frame}
+
+\end{document}
