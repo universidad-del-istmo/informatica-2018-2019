@@ -1,0 +1,184 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\inputencoding{utf8}
+
+\mode<presentation> {
+    \usetheme{Madrid}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title[Relaciones]{Relaciones}
+\author{Ernesto Rodriguez}
+\institute{
+    Universidad del Itsmo \\
+    \medskip \textit{erodriguez@unis.edu.gt}
+}
+
+\date[\today]{}
+
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Relaciones}
+\begin{itemize}
+    \item{{\bf Definici\'on} Dados los conjuntos $A$ y $B$,
+    $R\subset A\times B$ es una \emph{relacion binaria} entre
+    elementos de $A$ y $B$.}
+    \item{Si $A=B$, entonces $R$ es una relaci\'on en $A$}
+    \item{La relaci\'on $R$ es total ssi $\forall x\in A\ \exists y \in B.\ \langle x,y \rangle \in R$}
+    \item{$R^{-1}:=\{\langle y,x \rangle|\langle x,y \rangle \in R\}$ es el
+    \emph{inverso} de $R$}
+    \item{Dadas las relaciones $R\subset A\times B$ y $S\subset B\times C$,
+    $A\circ B:=\{\langle a,c \rangle \in A\times C\ |\ \exists b\in B.\ \langle a,b \rangle
+    \in R \wedge \langle b,c \rangle \in S \}$ se conoce como la \emph{composici\'on}
+    entre $A$ y $S$}
+    \item{Las relaciones ternarias, cuaternarias, ect. se pueden representar con:
+    \begin{itemize}
+        \item{Considerar $A\times B\times C$ como $A\times(B\times C)$}
+        \item{Considerar $\langle a,b,c \rangle$ como $\langle a,\langle b,c\rangle \rangle$}
+        \item{Utilizaremos $\langle a,b,c \rangle$ y $\langle a,\langle b,c\rangle \rangle$
+        para representar el mismo objeto.}
+    \end{itemize}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplos}
+    \begin{itemize}
+        \item{Mayor que ($>$)}
+        \item{Menor que ($<$)}
+        \item{Subconjunto de ($\subset$)}
+        \item{Igual que ($\equiv$)}
+        \item{$\mathtt{madre\_de}$}
+        \item{$\mathtt{padre\_de}$}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Propiedades de Relaciones Binarias}
+    \begin{itemize}
+        \item{
+            Una relaci\'on $R\subset A\times A$ es llamada:
+            \begin{itemize}
+                \item{{\bf reflexiva} sii $\forall a \in A.\ \langle a,a \rangle \in R$}
+                \item{{\bf irreflexiva} sii $\forall a \in A.\ \langle a,a\rangle \notin R$}
+                \item{{\bf symetrica} sii $\forall a,b \in A.\ \langle a,b\rangle \in R \Rightarrow \langle b,a \rangle \in R$}
+                \item{{\bf asimetrica} sii $\forall a,b \in A.\ \langle a,b\rangle \in R \Rightarrow \langle b,a \rangle \notin R$}
+                \item{{\bf anti-simetrica} sii $\forall a,b\in A.\ (\langle a,b \rangle \in R \wedge \langle b,a \rangle \in R)\Rightarrow a=b$}
+                \item{{\bf transitiva} sii $\forall a,b,c \in A.\ (\langle a,b\rangle \in R\wedge \langle b,c\rangle \in R)\Rightarrow \langle a,c\rangle \in R$}
+                \item{{\bf relacion de equivalencia} sii $R$ es \emph{reflexiva}, \emph{simetrica} y \emph{transitiva}}
+            \end{itemize}
+        }
+        \item{La relaci\'on de igualdad ($\equiv$) es una \emph{relaci\'on de equivalencia}
+        en cualquier conjunto.}
+        \item{En un conjunto de personas, la relacion $\mathtt{madre\_de}$ no
+        es \emph{simetrica} ni \emph{reflexiva}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ordenes Parciales}
+\begin{itemize}
+    \item{Un {\bf orden parcial} es una relaci\'on \emph{reflexiva}, \emph{antisimetrica} y
+    \emph{transitiva}.}
+    \item{Un {\bf orden parcial estricto} es un orden parcial \emph{irreflexivo} y \emph{transitivo}}
+    \item{A menudo, se utiliza el simbolo $\preceq$ para denotar un orden parcial
+    y $\prec$ para un orden parical estricto.}
+    \item{Se dice que un \emph{orden parcial} es {\bf lineal} si todos los
+    elementos se pueden \emph{comparar}. i.e. si $\langle x,y \rangle \in R$ o
+    $\langle y,x \rangle \in R$ para todo $x,y \in A$}
+    \item{La relaci\'on \emph{menor o igual que} ($\leq$) es un \emph{orden lineal}
+    para todo $\mathbb{N}$}
+    \item{La relaci\'on \emph{succesor} es un orden parcial no lineal.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Funciones (como relaciones especiales)}
+\begin{itemize}
+    \item{Una relaci\'on $f\subset X\times Y$ es una funci\'on parcial
+    si para todo $x\in X$ hay a lo sumo un $y\in Y$ tal que $\langle x,y \rangle \in f$}
+    \item{Se utiliza $f\ :\ X\rightarrow Y$ en vez de $f\subset X\times Y$}
+    \item{A $X$ se le conoce el {\bf dominio} de $f$}
+    \item{A $Y$ se le conoce como el {\bf contradominio} de $f$}
+    \item{Se escribe $f(x)=y$ en lugar de $\langle x,y \rangle \in f$}
+    \item{Una funci\'on $f$ esta {\bf indefinida} en $x$ sii $\langle x,y \rangle \notin f$
+    para todo $y \in Y$. Se indica con $f(x)=\perp $}
+    \item{Si $\forall x\in X\ \exists^1 y\in Y.\ \langle x, y\rangle \in f$, a
+    $f$ se le conoce como una {\bf funcion total}.}
+    \item{Se conoce como {\bf funci\'on identidad} en $A$ a la
+    funci\'on $\mathtt{id}_{A}:=\{ \langle a,a \rangle\ |\ a\in A \}$}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Notaci\'on lambda}
+\begin{itemize}
+    \item{La {\bf notaci\'on-$\lambda$} nos permite expresar funciones
+    de forma m\'as compacta.}
+    \item{Para $f=\{\langle x,E \rangle|x\in X\}$ donde $E$ es una expresi\'on
+    arbitraria, se puede escribir $\lambda x\in X.\ E$}
+    \item{Ejemplos:
+    \begin{itemize}
+        \item{$\lambda n\in \mathbb{N}.\ n=\{\langle n,n \rangle\ |\ n\in\mathbb{N} \}=\mathtt{id}_{\mathbb{N}}$}
+        \item{$\lambda x\in \mathbb{N}.\ x^2=\{\langle x,x^2 \rangle\ |\ x\in\mathbb{N}\}$}
+        \item{$\lambda \langle x,y \rangle \in \mathbb{N}\times \mathbb{N}.\ x+y=\{ \langle \langle x,y \rangle, x+y \rangle
+        \ |\ x\in\mathbb{N}\wedge y\in\mathbb{N}\}$}
+    \end{itemize}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Propiedades de funciones e inversos}
+\begin{itemize}
+\item{
+    Dada una funci\'on $f:S\rightarrow T$, la funci\'on es:
+    \begin{itemize}
+        \item{{\bf injectiva} sii $\forall x,y\in S.\ f(x)=f(y)\Rightarrow x=y$}
+        \item{{\bf surjectiva} sii $\forall y\in T\ \exists x\in S.\ f(x)=y$}
+        \item{{\bf bijectiva} sii $f$ es \emph{injectiva} y \emph{surjectiva}}
+    \end{itemize}
+}
+\item{Si $f$ es \emph{injectiva}, la funci\'on contraria $f^{-1}$ es una funci\'on parcial.}
+\item{Si $f$ es \emph{surjectiva}, la funci\'on contraria $f^{-1}$ es una funci\'on total.}
+\item{Si $f$ es \emph{bijectiva}, la funci\'on contraria $f^{-1}$ se le conoce como la {\bf funci\'on inversa}.}
+\item{La funci\'on $v:\mathbb{N}_1\rightarrow \mathbb{N}$ donde $v(o)=0$ y $v(s(n))=v(n)+1$ es una
+bijecci\'on entre los numeros naturales unarios y los numeros naturales ordinarios.}
+\item{{\bf Nota:} Los conjuntos que se pueden relacionar con una bijecci\'on se consideran
+equivalentes y a menudo son intercambiados. Se intercambiaran los $\mathbb{N}_1$ y $\mathbb{N}$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cardinalidad de Conjuntos}
+\begin{itemize}
+    \item{Se dice que un conjunto $A$ es {\bf finito} y tiene cardinalidad $\#(A)\in \mathbb{N}$
+    sii hay una funci\'on bijectiva $f:A\rightarrow \{n\in\mathbb{N}\ |\ n<\#(A)\}$ }
+    \item{Se dice que un conjunto $A$ es {\bf finitamente contable} sii hay una bijecci\'on
+    $f\ :\ A\rightarrow \mathbb{N}$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operaciones de Funciones}
+\begin{itemize}
+    \item{Si $f\in A\rightarrow B$ y $g\in B\rightarrow C$ son funciones, llamamos a la funci\'on
+    $g\circ f\ :\ A\rightarrow C$; $(g\circ f)(x):=g(f(x))$ la {\bf composici\'on} de $g$ y $f$.}
+    \item{Si $f\in A\rightarrow B$ y $C\subseteq A$, llamamos a la funci\'on $f|_{C}:=\{ \langle c,a \rangle\ |
+    \ \langle c,b \rangle \in f \}$ donde $c\in C$ la {\bf restricci\'on} de $f$ a $C$}
+\end{itemize}
+\end{frame}
+
+\end{document}
