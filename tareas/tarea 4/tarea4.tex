@@ -1,0 +1,199 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.cs}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../../recursos/logo.png}}
+ & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica 1 \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Hoja de trabajo \#4} \\
+        \large{Fecha de entrega: 30 de Agosto, 2018 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una carpeta llamada "Hoja de trabajo 1".
+Al menos que la pregunta indique diferente, todas las respuestas a preguntas escritas deben presentarse en
+un documento formato pdf, el cual haya sido generado mediante Latex. }
+
+\section*{Ejercicio \#1 (10\%)}
+A continuaci\'on se le presentara una serie de definiciones de conjuntos pertenecientes al
+conjunto $2^{\mathbb{N}}$. Indicar que definiciones corresponden al mismo conjunto, es decir
+que definiciones definen conjuntos que tienen los mismos elementos.
+\begin{enumerate}
+        \item{$a:=\{1,2,4,8,16,32,64\}$}
+        \item{$b:=\{n\ \in \mathbb{N}\ |\ \exists x \in \mathbb{N}\ .\ x=n/5 \}$}
+        \item{$c:=\{n\in \mathbb{N}\ |\ \exists x\in\mathbb{N}\ .\ n=x*x \}$}
+        \item{$d:=\{n\in\mathbb{N}\ |\ \exists i\in\mathbb{N}\ .\ n=2^i\wedge n<100 \}$}
+        \item{$e:=\{ n\in\mathbb{N}\ |\ \exists x\in \mathbb{N}\ .\ x=\sqrt{n} \}$}
+        \item{$f:=\{ n\in\mathbb{N}\ |\ \exists x\in \mathbb{N}\ .\ n=x+x+x+x+x \}$}
+\end{enumerate}
+
+\section*{Ejercicio \#2 (10\%)}
+Utilize la \emph{jerga matematica} para definir los siguientes conjuntos:
+\begin{enumerate}
+        \item{El conjunto de todos los naturales divisibles dentro de $5$}
+        \item{El conjunto de todos los naturales divisibles dentro de $4$ y $5$}
+        \item{El conjunto de todos los naturales que son primos}
+        \item{El conjunto de todos los conjuntos de numeros naturales que contienen
+        un numero divisible dentro de $15$}
+        \item{El conjunto de todos los conjuntos de numeros naturales que al ser sumados
+        producen $42$ como resultado}
+\end{enumerate}
+
+\section*{Ejercicio \#3 (10\%)}
+
+Un numero \emph{semi-primo} es el producto de dos numeros primos. Los numeros
+\emph{semiprimos} tienen la peculiaridad que nada m\'as son divisibles
+entre $1$ y los dos primos de los cuales dicho numero es un producto. Un ejemplo
+es el numero seis ($6=2*3$) el cual se obtiene al multiplicar los primos $2$ y $3$.
+\\\\
+Definir una relaci\'on llamada $S\subset \mathbb{N}_{50}\times\mathbb{N}_{50}\times\mathbb{N}_{50}$ en
+donde $\mathbb{N}_{30}:=\{ n \in \mathbb{N}\ |\ n\leq 30 \}$. La cual relaciona a todos los numeros
+\emph{semi-primos} menores a $30$ con los numeros primos que lo forman. Las tripletas que pertencen
+al conjunto que define dicha relaci\'on deben ser de la forma $\langle \mathtt{primo}_1,\mathtt{primo}_2,
+\mathtt{semi-primo} \rangle$, por ejemplo, para el numero $6$ corresponderia la tripleta $\langle 2,3,6 \rangle$
+
+\section*{Ejercicio \#4 (20\%)}
+Utilize la \emph{jerga matematica} para definir los conjuntos a los que corresponden las
+siguientes funci\'ones:
+\begin{enumerate}
+        \item{$f:\mathbb{N}\rightarrow\mathbb{N}$; $f(x)=x+x$}
+        \item{$g:\mathbb{N}\rightarrow\mathbb{B}$; $g(x)$ es verdadero si
+        $x$ es divisible dentro de $5$, falso en caso contrario. Nota: $\mathbb{B}=
+        \{\mathtt{true},\mathtt{false}\}$, puede definir dos conjuntos separados y
+        definir la funci\'on como la union de ambos conjuntos.}
+        \item{Indicar el conjunto al que pertenece la funci\'on $f\circ g$}
+        \item{Definir el conjunto que corresponde a la funci\'on $f\circ g$}
+\end{enumerate}
+
+\section*{Ejercicio \#5 (20\%)}
+Dadas las siguientes funciones que pertenecen a $\mathbb{R}\rightarrow \mathbb{R}$, indique
+si la funci\'on es injectiva, surjectiva o bijectiva.
+\begin{enumerate}
+        \item{$f(x)=x^2$}
+        \item{$g(x)=\frac{1}{cos(x-1)}$}
+        \item{$h(x)=2x$}
+        \item{$w(x)=x+1$}
+\end{enumerate}
+
+\section*{Ejercicio \#6 (30\%)}
+A continuaci\'on se definira una bijecci\'on entre los numeros naturales ($\mathbb{N}$) y los
+numeros enteros ($\mathbb{Z}$). Se utilizaran varios conjuntos intermediariarios para facilitar
+el proceso.
+\begin{enumerate}
+        \item{Definir el conjunto $B_1\in \mathbb{N}\times\mathbb{N}$ el cula empareja a los
+        numeros naturales \emph{pares} con todos los naturales mayores a $0$. Eg. $B_1=\{
+        \langle 2,1 \rangle, \langle 4,2 \rangle, \langle 6, 3 \rangle\ldots \}$}
+        \item{Definir el conjunto $B_{2a}\in \mathbb{N}\times\mathbb{N}$ el cula empareja a los
+        numeros naturales \emph{impares} con todos los naturales mayores a $0$. Eg. $B_{2a}=\{
+        \langle 1,1 \rangle, \langle 3,2 \rangle, \langle 5, 3 \rangle\ldots \}$}
+        \item{Definir el conjunto $B_{2}\in \mathbb{N}\times\mathbb{Z}$ el cual se definie
+        exactamente igual al conjunto $B_{2a}$ excepto que los valores en el contradominio
+        son negativos}
+        \item{El conjutno $B:= \{\langle 0,0\rangle \}\cup B_{1} \cup B_{2}$ es la bijeccion
+        que se intenta definir.}
+\end{enumerate}
+
+% \bibliography{../../recursos/referencias}
+% \bibliographystyle{plain}
+
+\end{document}
