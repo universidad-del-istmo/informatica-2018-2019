@@ -1,0 +1,222 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\inputencoding{utf8}
+
+\mode<presentation> {
+    \usetheme{Madrid}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title[Relaciones]{Relaciones}
+\author{Ernesto Rodriguez}
+\institute{
+    Universidad del Itsmo \\
+    \medskip \textit{erodriguez@unis.edu.gt}
+}
+
+\date[\today]{}
+
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Introducci\'on a Elm}
+    \begin{itemize}
+        \item{Es un lenguaje {\bf funcional} y {\bf puro}}
+        \item{Sintaxis inspirada en \href{https://www.haskell.org/}{Haskell} y \href{http://smlnj.org/}{Standard ML}}
+        \item{Probablemente nuevo para todos (Fair play)}
+        \item{Lenguaje limpio y claro similar a la matematica estudiada hasta el momento}
+        \item{Utiliza funciones como modelo de computaci\'on (ya estudiamos funciones)}
+        \item{Puede ser ejecutado por un navegador web o por \href{https://nodejs.org/en/}{Node.JS}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Introducci\'on a Elm}
+\begin{itemize}
+    \item{Instrucciones de instalaci\'on: \url{https://guide.elm-lang.org/install.html}}
+    \item{Se puede obtener una sessi\'on interactiva ejecutando \texttt{elm repl} en la terminal}
+    \item{Si tiene instalado Node.JS, puede instalarse ejecutando \texttt{npm install elm}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Elm: Lenguaje basico}
+\begin{itemize}
+    \item{Incluye tipos comunes: \texttt{number}, \texttt{Bool}, \texttt{String}, etc.}
+    \item{Permite construir tipos nuevos mediante {\bf constructores de tipos}}
+    \item{Operadores basicos: $+,-,*,\mathtt{not}$\, etc}
+    \item{Estructuras de control: \texttt{if/else} y {\bf pattern matching}}
+    \item{Comentarios: \texttt{-- comentario}}
+    \item{{\bf Inferencia de tipos}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Elm: Declaraciones}
+\begin{itemize}
+    \item{Existen tres tipos de declaraciones:
+    \begin{itemize}
+        \item{Declaraciones de valores: $\mathtt{x}=42$}
+        \item{Declaraciones de funciones: $\mathtt{duplicar}\ x=x+x$}
+        \item{Declaraciones de tipos: $\mathtt{type\ Vector}=\mathtt{Dim2\ Int\ Int}\ |\ \mathtt{Dim3\ Int\ Int}$}
+    \end{itemize}
+    }
+    \item{Media vez declarada una funci\'on, la podemos {\bf aplicar}:\\
+        $\mathtt{> duplicar\ x}$ \\
+        \texttt{84}
+    }
+    \item{Podemos imprimir el tipo de una funci\'on:\\
+    $>\mathtt{duplicar}$\\
+    $\langle\mathtt{function}\rangle \ :\ \mathtt{number}\ \rightarrow\ \mathtt{number}$
+    }
+    \item{Los {\bf constructores de tipos} tambi\'en son funciones:\\
+    $>\mathtt{Dim2}$ \\
+    $\langle\mathtt{function}\rangle \ :\ \mathtt{number}\ \rightarrow\ \mathtt{number}\ \rightarrow\ \mathtt{number}$
+    }
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Parejas ordenadas}
+\begin{itemize}
+    \item{Es posible declarar parejas ordenadas de cualquier tama\~no en elm:\\
+    $>\mathtt{v2} = (3,4)$\\
+    $(3,4)\ :\ (\mathtt{number},\mathtt{number1})$\\
+    $>\mathtt{v3} = (3,4,5)$\\
+    $(3,4,5)\ :\ (\mathtt{number},\mathtt{number1},\mathtt{number2})$
+    }
+    \item{Tambi\'en es possible {\bf deconstruir} las parejas ordenadas:\\
+    $>\mathtt{suma2}\ (x,y) = x + y$\\
+    $>\mathtt{suma2}\ (3,4)$\\
+    $7\ :\ \mathtt{number}$
+    }
+    \item{Podemos ignorar los valores que no nos interesan nombrandolas ``\_'':\\
+    $>\mathtt{segundo}\ (\_,y,\_)=y$\\
+    $>\mathtt{segundo}\ (1,2,3)$\\
+    $2\ :\ \mathtt{number}$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Listas}
+\begin{itemize}
+    \item{Tienen dos {\bf constructores de tipos}: $[]$ (llamado \emph{nil}) y (::) (llamado \emph{cons}):\\
+    $>1::2::3::[]$\\
+    $[1,2,3]\ :\ \mathtt{List\ Number}$}
+    \item{Se puede utilizar la {\bf comodidad sintactica} (syntactic sugar) para definirlas:\\
+    $>[1,2,3]$\\
+    $[1,2,3]\ :\ \mathtt{List\ Number}$}
+    \item{Facilita la definicion de funciones:\\
+    $>\mathtt{rango}\ (a,b) = \mathtt{if}\ b<a\ \mathtt{then}\ []\ \mathtt{else}\ a::\mathtt{rango}\ (a+1,b)$\\
+    $[1,2,3,4]\ :\ \mathtt{List\ Number}$
+    }
+\end{itemize}
+¿Una funci\'on definida en terminos de si misma?
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Recursi\'on}
+\begin{itemize}
+    \item{Una funci\'on es definida en terminos de si misma}
+    \item{En cada ocasi\'on, la funci\'on se acerca m\'as a la soluci\'on}
+    \item{Elm primero evalua los parametros, luego evalua la funci\'on}
+    \item{¿Que sucede cuando la funci\'on no se acerca una respuesta?\\
+    $>\mathtt{divergente}\ n\ =\ 1+\mathtt{divergente}\ (n+1)$\\
+    $>\mathtt{divergente}\ 1$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Recursi\'on}
+    \begin{itemize}
+        \item{Una funci\'on es definida en terminos de si misma}
+        \item{En cada ocasi\'on, la funci\'on se acerca m\'as a la soluci\'on}
+        \item{Elm primero evalua los parametros, luego evalua la funci\'on}
+        \item{¿Que sucede cuando la funci\'on no se acerca una respuesta?\\
+        $>\mathtt{divergente}\ n\ =\ 1+\mathtt{divergente}\ (n+1)$\\
+        $>\mathtt{divergente}\ 1$\\
+        \textcolor{red}{RangeError: Maximum call stack size exceeded}}
+        \item{Se dice que una funci\'on {\bf diverge} o es {\bf divergente} si
+        nunca llega a una respuesta}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Transparencia referencial e imutabilidad}
+\begin{itemize}
+    \item{Elm, a diferencia de la mayoria de lenguajes es {\bf referencialmente transparente}:\\
+    $\mathtt{rango}\ (1,2)\ =(\mathtt{if}\ 1>2\ \mathtt{then}\ []\ \mathtt{else}
+    \ 1::(\mathtt{if}\ 2>2\ \mathtt{then}\ []\ \mathtt{else}\ 2::(\mathtt{if}
+    \ 2>3\ \mathtt{then}\ []\ \mathtt{else}\ (\ldots))))$}
+    \item{Elm no permite modificar el estado de una variable:\\
+    $>x=42$\\
+    $>\mathtt{siguiente}\ ()=x=x+1;x$\\
+    \textcolor{red}{-- PARSE ERROR --}
+    }
+    \item{¿Podemos escribir programas ``reales'' sin estado? Si: \url{https://unsoundscapes.itch.io/flatris}}
+    \item{No somos comunistas por lo tanto no queremos que el estado dicte todo
+    lo que pasa en nuestros programas...}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Funciones por casos o Pattern Matching}
+\begin{itemize}
+    \item{Una lista puede ser una lista vacia ($[]$) o una lista compuesta ($x::xs$) donde
+    $x$ es un elemento y $xs$ una lista}
+    \item{Se puede utilizar la sintaxis $\mathtt{case} \ldots \mathtt{of}$ para definir una
+    funci\'on por casos}
+    \item{{\bf Ejemplo:}
+    \[
+        \begin{array}{l l}
+        \multicolumn{2}{l}{\mathtt{aplanar}\ lista\ =\ \mathtt{case}\ lista\ \mathtt{of}}\\
+        & x::xs\rightarrow\ x\ ++\ (\mathtt{aplanar}\ xs) \\
+        & [] \rightarrow\ [] \\
+        \multicolumn{2}{l}{>\mathtt{aplanar}\ [[\mathtt{"Hola"},\mathtt{"como"}], [\mathtt{"estas?"}]]} \\
+        \multicolumn{2}{l}{[\mathtt{"Hola"},\mathtt{"como"},\mathtt{"estas?"}]}\
+        \end{array}
+    \]
+    }
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Cadenas y Listas}
+\begin{itemize}
+    \item{Una {\bf cadena} es una secuencia de {\bf caracteres}}
+    \item{En elm, un {\bf caracter} se represente utilizando una letra entre comillas
+    simples: $'a','e','i'$}
+    \item{En elm, una {\bf cadena} es un tipo atomico, por lo tanto:
+    \begin{itemize}
+        \item{La funci\'on $\mathtt{String.toList}$ convierte una {\bf cadena} a una {\bf lista}
+        de {\bf caracteres}}
+        \item{La funci\'on $\mathtt{String.fromList}$ convierte una {\bf lista} de {\bf caracteres}
+        a una {\bf cadena}\\
+        $> \mathtt{String.toList}\ \mathtt{"hola"}$\\
+        $[\mathtt{`h`,`o`,`l`,`a`'}]$\\
+        $> \mathtt{String.fromList}\ [\mathtt{`h`,`o`,`l`,`a`}]$\\
+        $\mathtt{"hola"}$}
+    \end{itemize}
+    }
+    \item{Ejercicio:
+    \begin{itemize}
+        \item{Escribir una funci\'on que detecta palindromes, como ``otto'' o ``anna''}
+        \item{Probar con la frase: ``Marge lets Norah see Sharon’s telegram''}
+    \end{itemize}
+    }
+\end{itemize}
+\end{frame}
+\end{document}
