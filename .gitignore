@@ -12,3 +12,5 @@
 *.toc
 *.bbl
 *.blg
+*node_modules
+*elm-stuff
