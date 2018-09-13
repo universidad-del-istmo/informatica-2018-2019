@@ -1,0 +1,190 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.cs}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../../recursos/logo.png}}
+ & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica 1 \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Hoja de trabajo \#6} \\
+        \large{Fecha de entrega: 6 de Septiembre, 2018 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una
+carpeta llamada "Hoja de trabajo 6". Al menos que la pregunta indique diferente, todas las
+respuestas a preguntas escritas deben presentarse en un documento formato pdf, el cual
+haya sido generado mediante Latex. }\\\\
+
+{\bf Nota: }En este deber se omitira la ubicaci\'on exacta del compilador
+de elm, y solo se escribira elm. Por ejemplo, en vez de escribir:\\\\
+$>\mathtt{node\_modules}\backslash\mathtt{elm\ repl}$\\\\
+Se escribira:\\\\
+$>\mathtt{elm\ repl}$\\\\
+Adicionalmente, asegurarse que las funciones y modulos que sean declarados
+en su deber correspondan exactamente a los nombres escritos en dicho deber
+ya que se utilizaran pruebas automatizadas para calificar.
+
+\section*{Ejercicio \#1 (25\%)}
+Los {\bf numeros naturales unarios} se pueden definir de la siguiente manera:
+$$
+        \mathbf{type}\ \mathtt{Natural}\ =\ \mathtt{Suc\ Natural}\ |\ \mathtt{Cero}
+$$
+En donde $\mathtt{Cero}$ corresponde al numero cero (0) y $\mathtt{Suc}$ es
+el constructor que construye un natural representandolo como el sucesor de
+otro numero. Ejercicio:
+\begin{itemize}
+        \item{Definir en Elm la funci\'on ``$\mathtt{resta}\ :\ \mathtt{Natural}
+        \rightarrow\mathtt{Natural}\rightarrow\mathtt{Natural}$'' la cual calcula
+        la resta entre dos naturales como estan definidos anteriormente. Si, el
+        resultado fuese a ser negativo, retornar cero.}
+        \item{Definir la funci\'on ``$\mathtt{multiplicacion}\ :\ \mathtt{Natural}
+        \rightarrow\mathtt{Natural}\rightarrow\mathtt{Natural}$'' la cula multiplica
+        dos naturales como fueron definidos anteriormente.}
+        \item{Definir la funci\'on ``$\mathtt{division}\ :\ \mathtt{Natural}
+        \rightarrow\mathtt{Natural}\rightarrow(\mathtt{Natural},\mathtt{Natural})$'' la cual debe
+        calcular la division y el residuo resultante de dividir un natural dentro
+        del otro.}
+\end{itemize}
+
+\section*{Ejercicio \#2 (25\%)}
+
+Definir el tipo $\mathtt{Expresion}$ para representar {\bf expressiones matematicas} en Elm. Una expresion matematica
+esta compuesta de los siguientes casos:
+\begin{itemize}
+        \item{$\mathtt{Valor}$: El cual debe aceptar un entero ($\mathtt{Int}$) como parametro.}
+        \item{$\mathtt{Suma}$: El cual debe aceptar dos expresiones como parametro.}
+        \item{$\mathtt{Mult}$: El cual debe aceptar dos expresiones como parametro.}
+\end{itemize}
+Por ejemplo, la expression ``$3+8*5*2+4$'' seria representada (respetando las reglas de 
+procedencia de la suma y multiplicaci\'on) como ``$\mathtt{Suma}\ (\mathtt{Valor}\ 3)\ (\mathtt{Suma}
+\ (\mathtt{Mult}\ (\mathtt{Valor}\ 8)\ (\mathtt{Mult}\ (\mathtt{Valor}\ 5)\ (\mathtt{Valor}\ 2)))\ (\mathtt{Valor}\ 4))$''
+
+\section*{Ejercicio \#3 (50\%)}
+Definir una funci\'on llamada ``$\mathtt{parsear}\ :\ \mathtt{string}\rightarrow\mathtt{Maybe\ Expresion}$'' que
+toma una expresi\'on representada como un $\mathtt{string}$ y produce una expresi\'on respetando la
+procedencia de operaciones. Se recomienda seguir los siguientes consejos:
+\begin{itemize}
+        \item{Generalize el tipo $\mathtt{Expresion}$ creando un nuevo tipo llamado
+        $\mathtt{GExpresion}$ el cual acepta un parametro y utiliza ese parametro
+        en vez de un $\mathtt{Int}$. Luego puede definir el tipo $mathtt{Expresion}$ asi:\\
+        $>\mathbf{type\ alias}\ \mathtt{Expresion}=\mathtt{GExpresion}\ \mathtt{Int}$}
+        \item{Crear un tipo nuevo llamado $\mathtt{Estado}$, con dos constructores. Un
+        constructor acepta un $\mathtt{Int}$ y el otro un $\mathtt{List Char}$. La idea
+        es que el primer caso representa un valor ya producido mientras que la lista
+        de caracteres representa un valor que aun necesita procesamiento.}
+        \item{El tipo estado se utilizara en las expresiones para facilitar
+        la conversion. El algoritmo es el siguiente:
+        \begin{enumerate}
+                \item{Empezar con un solo $\mathtt{Valor}$, en el cual coloca un
+                $\mathtt{Estado}$ con la expresi\'on entera.}
+                \item{Buscar en el $\mathtt{Estado}$ el operador de menor
+                procedencia. ie. la suma m\'as a la derecha}
+                \item{Selecci\'onar el constructor adecuado en base a esa operaci\'on ($\mathtt{Suma}$ o $\mathtt{Mult}$)}
+                \item{Construir los valores de ese constructor llamando recursivamente a la funci\'on.}
+        \end{enumerate}
+        }
+\end{itemize}
+Para su implementaci\'on solo debe considerar operaci\'ones bien formadas que no contengan espacios. Si la
+operaci\'on no cumple estos criterios, puede retornar $\mathtt{Nothing}$
+
+\end{document}
