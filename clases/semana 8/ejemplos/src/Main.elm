@@ -38,3 +38,13 @@ crearLista : List a -> MiList a
 crearLista l = case l of
     [] -> Nil
     x::xs -> Cons x (crearLista xs)
+
+
+type alias IntList = MiLista Int
+
+crearIntList : List Int -> IntList
+
+
+
+
+
