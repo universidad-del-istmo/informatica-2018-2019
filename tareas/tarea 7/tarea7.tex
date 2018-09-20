@@ -1,0 +1,156 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.cs}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../../recursos/logo.png}}
+ & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica 1 \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Hoja de trabajo \#7} \\
+        \large{Fecha de entrega: 27 de Septiembre, 2018 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una
+carpeta llamada "Hoja de trabajo 7". Al menos que la pregunta indique diferente, todas las
+respuestas a preguntas escritas deben presentarse en un documento formato pdf, el cual
+haya sido generado mediante Latex. }\\\\
+
+{\bf Nota: }En este deber se omitira la ubicaci\'on exacta del compilador
+de elm, y solo se escribira elm. Por ejemplo, en vez de escribir:\\\\
+$>\mathtt{node\_modules}\backslash\mathtt{elm\ repl}$\\\\
+Se escribira:\\\\
+$>\mathtt{elm\ repl}$\\\\
+Adicionalmente, asegurarse que las funciones y modulos que sean declarados
+en su deber correspondan exactamente a los nombres escritos en dicho deber
+ya que se utilizaran pruebas automatizadas para calificar.
+\\\\
+Para esta tarea necesitara el tipo de datos ``Expressi\'on'', el cual fue
+definido en la tarea \#6.
+
+\section*{Ejercicio \#1 (20\%)}
+Defina las siguientes funci\'ones:
+\begin{itemize}
+        \item{La funci\'on $\mathtt{suma}$ de tipo $\mathtt{Int}\rightarrow\mathtt{Int}
+        \rightarrow\mathtt{Int}$ que suma dos numeros enteros.}
+        \item{La funci\'on $\mathtt{multiplicacion}$ de tipo $\mathtt{Int}\rightarrow\mathtt{Int}
+        \rightarrow\mathtt{Int}$, que multiplica dos numeros enteros.}
+\end{itemize}
+
+
+\section*{Ejercicio \#2 (80\%)}
+
+Un {\bf algebra} o {\bf reglas de evaluaci\'on} son un conjunto de reglas que describen como
+se reduce una expresi\'on. En el caso de el tipo $\mathtt{Expresion}$, se necesitan dos reglas:
+\begin{itemize}
+        \item{Regla para hacer sumas de tipo $\mathtt{Int}\rightarrow\mathtt{Int}
+        \rightarrow\mathtt{Int}$}
+        \item{Regla para hacer multiplicaciones de tipo $\mathtt{Int}\rightarrow\mathtt{Int}
+        \rightarrow\mathtt{Int}$}
+\end{itemize}
+
+Defina una funci\'on llamada $\mathtt{evaluar}$ de tipo $\mathtt{((Int\rightarrow Int\rightarrow Int)\times
+(\mathtt{Int}\rightarrow\mathtt{Int}\rightarrow\mathtt{Int}))}\rightarrow \mathtt{Expression} \mathtt{Int}$.
+El primer parametro de la funci\'on es el algebra y el segundo parametro la {\bf expressi\'on}. Su
+funci\'on debe utilizar este algebra para reducir la expressi\'on que se le haya dado.
+
+\end{document}

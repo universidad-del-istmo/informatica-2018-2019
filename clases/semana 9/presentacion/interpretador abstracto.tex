@@ -1,0 +1,127 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multirow}
+
+\inputencoding{utf8}
+
+\mode<presentation> {
+    \usetheme{Madrid}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title[Interpretadores]{Interpretadores Abstractos}
+\author{Ernesto Rodriguez}
+\institute{
+    Universidad del Itsmo \\
+    \medskip \textit{erodriguez@unis.edu.gt}
+}
+
+\date[\today]{}
+
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}
+    \frametitle{¿Como se computa?}
+    \begin{itemize}
+    \item{Podemos definir funci\'ones mediante \emph{Tipos Abstractos}}
+    \item{Sin embargo, necesitamos computar dichas funci\'ones.}
+    \item{A todo esto ¿Que es computar?}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{¿Como se computa?}
+    \begin{itemize}
+    \item{Podemos definir funci\'ones mediante \emph{Tipos Abstractos}}
+    \item{Sin embargo, necesitamos computar dichas funci\'ones.}
+    \item{A todo esto ¿Que es computar?
+    \begin{itemize}
+        \item{Aplicar un conjunto de reglas para reducir un ADT.}
+        \item{La computaci\'on termina cuando ya no se puede aplicar ninguna regla}
+    \end{itemize}
+    }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{¿Como se computa?}
+    \begin{itemize}
+        \item{Datao $\mathcal{A}:=\langle \mathcal{S}^0,\mathcal{D} \rangle$, llamamos
+        al cuarteto $\langle f::\mathbb{A}\rightarrow\mathbb{R};\mathcal{R} \rangle$
+        un {\bf procedimiento abstracto} ssi $\mathcal{R}$ es un conjunto de reglas
+        para $f$.
+        \begin{itemize}
+            \item{$\mathbb{A}$ es el conjunto de parametros}
+            \item{$\mathbb{R}$ es el conjunto de resultados}
+        \end{itemize}
+        }
+        \item{La {\bf computaci\'on} de un procedimiento abstracto $p$ es
+        la secuencia de {\bf constructores} $c_1\rightsquigarrow c_2\rightsquigarrow \ldots$
+        segun las reglas de $p$}
+        \item{Una {\bf computaci\'on abstracta} es una {\bf computacion} que ejecutamos
+        en nuestra mente sin limites de memoria o tiempo.}
+        \item{Un {\bf interpretador abstracto} es la maquina imaginaria que ejecuta
+        dicha computaci\'on}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejemplo: Las funciones $\rho$ y $\mathtt{concat}$}
+        \tiny{
+        $$
+        \left\langle
+            \begin{array}{ll}
+            \rho::\mathcal{L}(\mathbb{N}) \rightarrow \mathcal{L}(\mathbb{N}); &
+            {
+                \left\{
+                \begin{array}{l}
+                    \rho(\mathtt{cons}(n,l)) \rightsquigarrow \mathtt{concat}(\rho(l), \mathtt{cons}(n,\mathtt{nil})) \\
+                    \rho(\mathtt{nil}\rightsquigarrow \mathtt{nil})
+                \end{array}
+                \right\}
+            }
+            \end{array}
+        \right\rangle
+        $$
+        \\
+        $$
+        \left\langle
+            \begin{array}{ll}
+            \mathtt{concat}::\mathcal{L}(\mathbb{N})\times\mathcal{L}(\mathbb{N}) \rightarrow \mathcal{L}(\mathbb{N}); &
+            {
+                \left\{
+                \begin{array}{l}
+                    \mathtt{concat}(\mathtt{cons}(n,l), r) \rightsquigarrow \mathtt{cons}(n, \mathtt{concat}(l,r)) \\
+                    \mathtt{concat}(\mathtt{nil}\rightsquigarrow \mathtt{nil})
+                \end{array}
+                \right\}
+            }
+            \end{array}
+        \right\rangle
+        $$
+        }
+\end{frame}
+
+\begin{frame}
+\frametitle{Caracteristicas de los Procedimientos Abstractos}
+\begin{itemize}
+    \item{Se dice que un proceso abstracto {\bf termina} si se produce
+    un termino que ninguna regla en $\mathcal{R}$ puede reducir}
+    \item{Este modelo de computaci\'on esta inspirado en el
+    calculo-$\lambda$ de Church.}
+    \item{Los ``pasos'' }
+\end{itemize}
+\end{frame}
+
+\end{document}
