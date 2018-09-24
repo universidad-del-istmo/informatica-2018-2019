@@ -1,0 +1,399 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{multicol}
+
+\inputencoding{utf8}
+
+\mode<presentation> {
+    \usetheme{Madrid}
+}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title[Superior]{Funciones de Orden Superior}
+\author{Ernesto Rodriguez}
+\institute{
+    Universidad del Itsmo \\
+    \medskip \textit{erodriguez@unis.edu.gt}
+}
+
+\date[\today]{}
+
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}
+\frametitle{Funciones de Orden Superior}
+\begin{itemize}
+    \item{Los lenguajes funcionales no diferencian
+    funciones de valores}
+    \item{Esto permite escribir funciones que aceptan
+    otras funciones como parametro}
+    \item{Este patron permite reemplazar muchos
+    componentes tradicionales (ciclos, manejo de excepciones,
+    saltos, etc.) mediante funciones.
+    \begin{itemize}
+        \item{Los Lambda Papers\cite{LambdaTheUltimate} describen
+        diferentes formas de alcanzar esto.}
+    \end{itemize}
+    }
+    \item{La mayoria de lenguajes modernos adopta este patron.
+    \begin{itemize}
+        \item{{\bf Java 8} por fin llego a donde Church estaba en 1930. -- \href{http://homepages.inf.ed.ac.uk/wadler/}{Phillip Wadler}}
+    \end{itemize}
+    }
+    \item{Un patron llamado {\bf Programaci\'on Funcional Reactiva} permite crear
+    interfaces graficas mediante {\bf funciones de orden superior}. Este Patron
+    se utiliza en Elm, React y muchas otras herramientas.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ejemplo: Composici\'on}
+\begin{itemize}
+    \item{¿Que {\bf tipo} deberia tener la composici\'on?}
+    \item{¿Se puede programar la composici\'on en Elm?}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ciclos}
+\begin{itemize}
+    \item{Consideremos las siguientes funciones sobre listas:
+    \begin{itemize}
+        \item{$\mathtt{duplicar}\ :\ \mathcal{L}(\mathbb{Z})\rightarrow \mathcal{L}(\mathbb{Z})$}
+        \item{$\mathtt{negar}\ :\ \mathcal{L}(\mathbb{B})\rightarrow \mathcal{L}(\mathbb{B})$}
+    \end{itemize}
+    }
+    \item{¿Tiene algun problema la implementaci\'on?}
+    \item{¿Podemos simplificar?}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ciclos}
+    \begin{itemize}
+        \item{Consideremos las siguientes funciones sobre listas:
+        \begin{itemize}
+            \item{$\mathtt{duplicar}\ :\ \mathcal{L}(\mathbb{Z})\rightarrow \mathcal{L}(\mathbb{Z})$}
+            \item{$\mathtt{negar}\ :\ \mathcal{L}(\mathbb{B})\rightarrow \mathcal{L}(\mathbb{B})$}
+        \end{itemize}
+        }
+        \item{¿Tiene algun problema la implementaci\'on?
+            \begin{itemize}
+                \item{Repetici\'on de codigo}
+            \end{itemize}
+        }
+        \item{¿Podemos simplificar?
+            \begin{itemize}
+                \item{Idea: Abstraer la recursi\'on}
+            \end{itemize}
+        }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ciclos}
+    La funci\'on $\mathtt{map}\ :\ (a\rightarrow b) \rightarrow
+    \mathcal{L}(a) \rightarrow \mathcal{L}(b)$ hace exactamente eso:
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ciclos}
+    La funci\'on $\mathtt{map}\ :\ (a\rightarrow b) \rightarrow
+    \mathcal{L}(a) \rightarrow \mathcal{L}(b)$ hace exactamente eso:
+    $$
+    \mathtt{map}\ lista\ f=\left\{
+        \begin{array}{l l}
+            [\ ] & \mbox{if }lista\equiv [\ ] \\
+            \mathtt{f\ x::\mathtt{map}\ xs\ f} & \mbox{if }lista\equiv x::xs
+        \end{array}
+    \right.
+    $$
+    ¿Como implementamos $\mathtt{duplicar}$ y $\mathtt{negar}$ utilizando $\mathtt{map}$?
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ciclos}
+    La funci\'on $\mathtt{map}\ :\ (a\rightarrow b) \rightarrow
+    \mathcal{L}(a) \rightarrow \mathcal{L}(b)$ hace exactamente eso:
+    $$
+    \mathtt{map}\ f\ lista=\left\{
+        \begin{array}{l l}
+            [\ ] & \mbox{if }lista\equiv [\ ] \\
+            \mathtt{f\ x::\mathtt{map}\ f\ xs} & \mbox{if }lista\equiv x::xs
+        \end{array}
+    \right.
+    $$
+    ¿Como implementamos $\mathtt{duplicar}$ y $\mathtt{negar}$ utilizando $\mathtt{map}$?
+    \begin{itemize}
+        \item{$\mathtt{duplicar}=\mathtt{map}\ ((*)\ 2)$}
+        \item{$\mathtt{negar}=\mathtt{map}\ \mathtt{not}$}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Funciones Anonimas y Let}
+\begin{itemize}
+    \item{A menudo se definen funci\'ones de uso
+    unico.}
+    \item{Es conveniente definir la funci\'on en
+    donde sera utilizada}
+    \item{A veces se necesita contexto local para
+    definir la funci\'on.}
+    \item{Ejemplo: $\mathtt{multiplicar}\ :\ \mathbb{Z}\rightarrow \mathcal{L}(\mathtt{Z})\rightarrow \mathcal{L}(\mathtt{Z})$}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Funciones Anonimas y Let}
+    \begin{itemize}
+        \item{A menudo se definen funci\'ones de uso
+        unico.}
+        \item{Es conveniente definir la funci\'on en
+        donde sera utilizada}
+        \item{A veces se necesita contexto local para
+        definir la funci\'on.}
+        \item{Ejemplo: $\mathtt{multiplicar}\ :\ \mathbb{Z}\rightarrow \mathcal{L}(\mathtt{Z})
+        \rightarrow \mathcal{L}(\mathtt{Z})$}
+    \end{itemize}
+    \begin{tabular}{l l}
+        $
+        \begin{array}{l l l}
+            \multicolumn{3}{l}{\mathtt{multiplicar}\ factor\ lista=} \\
+            & \multicolumn{2}{l}{\mathtt{let}} \\
+            & & \mathtt{op}\ valor=factor*valor \\
+            & \multicolumn{2}{l}{\mathtt{in}} \\
+            & & \mathtt{map}\ op\ lista
+        \end{array}
+        $
+        &
+        $
+        \begin{array}{l l}
+            \multicolumn{2}{l}{\mathtt{multiplicar}\ factor\ lista=} \\
+            & \mathtt{map}\ (\lambda valor\rightarrow factor*valor)\ lista
+        \end{array}
+        $
+        \\
+    \end{tabular}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generalizando los ciclos de Listas}
+    \begin{itemize}
+        \item{¿Existen funciones que no se pueden expresar mediante $\mathtt{map}?$}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generalizando los ciclos de Listas}
+    \begin{itemize}
+        \item{¿Existen funciones que no se pueden expresar mediante $\mathtt{map}?$
+        \begin{itemize}
+            \item{¿$\mathtt{count}\ :\ \mathcal{L}(a)\rightarrow \mathbb{N}$?}
+            \item{¿$\mathtt{sumatoria}\ :\ \mathcal{L}(\mathbb{Z})\rightarrow \mathbb{Z}$?}
+        \end{itemize}
+        }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Generalizando los ciclos de Listas}
+    \begin{itemize}
+        \item{¿Existen funciones que no se pueden expresar mediante $\mathtt{map}?$
+        \begin{itemize}
+            \item{¿$\mathtt{count}\ :\ \mathcal{L}(a)\rightarrow \mathbb{N}$?}
+            \item{¿$\mathtt{sumatoria}\ :\ \mathcal{L}(\mathbb{Z})\rightarrow \mathbb{Z}$?}
+        \end{itemize}
+        }
+        \item{El tipo de la funci\'on esta incorrecto, ya que $\mathtt{map}$ solo
+        puede producir listas.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Primer intento}
+    Llamaremos a la nueva funci\'on $\mathtt{fold}\ :\ (a\rightarrow b)\rightarrow
+        \mathcal{L}(a)\rightarrow b$:
+    $$
+    \mathtt{fold}\ f\ lista = \left\{
+        \begin{array}{ll}
+            ? & \mbox{if }lista\equiv [\ ] \\
+            f\ x & \mbox{if }lista\equiv x::xs
+        \end{array}
+    \right.
+    $$
+    \begin{itemize}
+        \item{{\bf Problema: }No es posible retornar un valor cuando $lista$ esta vacia.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Primer intento}
+    Llamaremos a la nueva funci\'on $\mathtt{fold}\ :\ (a\rightarrow b)\rightarrow
+        {\color{red} b} \rightarrow \mathcal{L}(a)\rightarrow b$:
+    $$
+    \mathtt{fold}\ f\ {\color{red} base}\ lista=\left\{
+        \begin{array}{ll}
+            {\color{red} base} & \mbox{if }lista\equiv [\ ] \\
+            f\ x & \mbox{if }lista\equiv x::xs
+        \end{array}
+    \right.
+    $$
+    \begin{itemize}
+        \item{{\bf Problema: }No es posible retornar un valor cuando $lista$ esta vacia.
+        \begin{itemize}
+            \item{Aceptamos un valor de retorno para cubrir ese caso}
+        \end{itemize}
+        }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Segundo intento}
+    Llamaremos a la nueva funci\'on $\mathtt{fold}\ :\ (a\rightarrow b)\rightarrow
+        b \rightarrow \mathcal{L}(a)\rightarrow b$:
+    $$
+    \mathtt{fold}\ f\ base\ lista=\left\{
+        \begin{array}{ll}
+            base & \mbox{if }lista\equiv [\ ] \\
+            f\ x & \mbox{if }lista\equiv x::xs
+        \end{array}
+    \right.
+    $$
+    \begin{itemize}
+        \item{{\bf Problema: }No es posible retornar un valor cuando $lista$ esta vacia.
+        \begin{itemize}
+            \item{Aceptamos un valor de retorno para cubrir ese caso}
+        \end{itemize}
+        }
+        \item{{\bf Problema: }El valor de retorno solo depende del primer valor.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Segundo intento}
+{\bf Idea:}
+\begin{itemize}
+    \item{``Recordar'' el valor producido por cada elemento de la lista}
+    \item{Permitir que la {\bf funcion de orden superior} o el {\bf reductor}
+    utilize ese valor para producir un nuevo valor}
+    \item{Retornar el ultimo valor que haya sido calculado.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Segundo intento}
+    Llamaremos a la nueva funci\'on $\mathtt{fold}\ :\ ({\color{red} b}\rightarrow a\rightarrow b)\rightarrow
+        b \rightarrow \mathcal{L}(a)\rightarrow b$:
+    $$
+    \mathtt{fold}\ f\ base\ lista=\left\{
+        \begin{array}{ll}
+            base & \mbox{if }lista\equiv [\ ] \\
+            {\color{red} f\ (\mathtt{fold}\ f\ base\ xs)\ x} & \mbox{if }lista\equiv x::xs
+        \end{array}
+    \right.
+    $$
+    \begin{itemize}
+        \item{{\bf Problema: }No es posible retornar un valor cuando $lista$ esta vacia.
+        \begin{itemize}
+            \item{Aceptamos un valor de retorno para cubrir ese caso}
+        \end{itemize}
+        }
+        \item{{\bf Problema: }El valor de retorno solo depende del primer valor.
+            \begin{itemize}
+                \item{Recordar el valor que fue calculado en el paso anterior}
+            \end{itemize}
+        }
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fold: Recursi\'on Generalizada}
+    \begin{itemize}
+        \item{¿Podemos implementar la funci\'on $\mathtt{count}?$}
+        \item{¿Podemos implementar la funci\'on $\mathtt{sumatoria}$?}
+        \item{¿Podemos implementar la funci\'on $\mathtt{map}$?}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fold: Recursi\'on Generalizada}
+    \begin{itemize}
+        \item{¿Podemos implementar la funci\'on $\mathtt{count}?$
+            \begin{itemize}
+                \item{$\mathtt{sumatoria}\ xs=\mathtt{fold}\ (\lambda\ a\ \_\rightarrow a+1)
+                    \ 0\ xs$}
+            \end{itemize}
+        }
+        \item{¿Podemos implementar la funci\'on $\mathtt{sumatoria}$?}
+        \item{¿Podemos implementar la funci\'on $\mathtt{map}$?}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fold: Recursi\'on Generalizada}
+    \begin{itemize}
+        \item{¿Podemos implementar la funci\'on $\mathtt{count}?$
+            \begin{itemize}
+                \item{$\mathtt{sumatoria}\ xs=\mathtt{fold}\ (\lambda\ a\ \_\rightarrow a+1)
+                    \ 0\ xs$}
+            \end{itemize}
+        }
+        \item{¿Podemos implementar la funci\'on $\mathtt{sumatoria}$?
+            \begin{itemize}
+                \item{$\mathtt{sumatoria}\ xs=\mathtt{fold}\ (\lambda\ a\ b\rightarrow a+b)
+                    \ 0\ xs$}
+            \end{itemize}
+        }
+        \item{¿Podemos implementar la funci\'on $\mathtt{map}$?}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fold: Recursi\'on Generalizada}
+    \begin{itemize}
+        \item{¿Podemos implementar la funci\'on $\mathtt{count}?$
+            \begin{itemize}
+                \item{$\mathtt{sumatoria}\ xs=\mathtt{fold}\ (\lambda\ a\ \_\rightarrow a+1)
+                    \ 0\ xs$}
+            \end{itemize}
+        }
+        \item{¿Podemos implementar la funci\'on $\mathtt{sumatoria}$?
+            \begin{itemize}
+                \item{$\mathtt{sumatoria}\ xs=\mathtt{fold}\ (\lambda\ a\ b\rightarrow a+b)
+                    \ 0\ xs$}
+            \end{itemize}
+        }
+        \item{¿Podemos implementar la funci\'on $\mathtt{map}$?
+            \begin{itemize}
+                \item{$\mathtt{map}\ f\ as=\mathtt{fold}\ (\lambda\ bs\ a\rightarrow f\ a::bs)\ [\ ]\ as$}
+            \end{itemize}
+        }
+        \item{La funci\'on $\mathtt{fold}$ generaliza todas las {\bf funciones recursivas}
+        sobre listas. Ver ``Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire''
+        \cite{Meijer91functionalprogramming}.}
+        \item{La generalizaci\'on de la funci\'on $\mathtt{fold}$ para cualquier tipo
+        se conoce como un {\bf catamorfismo}.}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Referencias}
+    \bibliography{../../../recursos/referencias}
+    \bibliographystyle{plain}
+\end{frame}
+
+\end{document}
