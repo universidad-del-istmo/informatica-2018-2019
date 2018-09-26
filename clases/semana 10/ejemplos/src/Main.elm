@@ -24,3 +24,17 @@ multiplicar factor ns =
 
 multiplicar2 : Int -> List Int -> List Int
 multiplicar2 factor ns = map (\x -> factor * x) ns
+
+fold : (b -> a -> b) -> b -> List a -> b
+fold f base lista =
+    case lista of
+        [] -> base
+        x::xs -> f (fold f base xs) x
+
+promedio lista =
+    let
+        (sum_, count_) = fold (\(sum, count) valor -> (sum +valor, count + 1)) (0,0) lista
+    in
+        sum_/count_
+
+map2 f = fold (\p e -> f e :: p) []
