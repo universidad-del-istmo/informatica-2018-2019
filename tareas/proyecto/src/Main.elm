@@ -37,7 +37,7 @@ view =
     let
         width = 600
         height = 600
-        poligono ctx = dibujar (koch 6) ctx
+        poligono ctx = dibujar (koch 5) ctx
     in
         Canvas.element
             width
