@@ -22,7 +22,7 @@ koch reps = fractal
 -- las lineas que connectan dichas coordenadas
 dibujar triangulo context =
     let
-        acc (x0,y0) (x,y) s = s |> Canvas.moveTo x0 y0 |> Canvas.lineTo x y
+        acc (x,y) s = s |> Canvas.lineTo x y
     in
         case triangulo of
             (x0,y0)::xs ->
