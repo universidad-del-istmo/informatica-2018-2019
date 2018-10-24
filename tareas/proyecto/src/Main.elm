@@ -11,9 +11,7 @@ import Html.Attributes exposing (class, style)
 fractal = [
     (300, 200),
     (400, 400),
-    (250, 250),
-    (200, 400),
-    (300, 500)]
+    (200, 400)]
 
 koch reps = fractal
 
@@ -26,7 +24,7 @@ dibujar triangulo context =
     in
         case triangulo of
             (x0,y0)::xs ->
-                List.foldl (acc (x0,y0)) (Canvas.moveTo x0 y0 context) xs
+                List.foldl acc (Canvas.moveTo x0 y0 context) xs
                 |> Canvas.lineTo x0 y0
             _ -> context
 
