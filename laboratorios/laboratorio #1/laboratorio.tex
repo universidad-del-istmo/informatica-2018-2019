@@ -1,0 +1,166 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.cs}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../../recursos/logo.png}} & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica II \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Laboratorio \#1} \\
+        \large{Fecha de entrega: 24 de Enero, 2019 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una carpeta llamada "Laboratorio \#1".
+Al menos que la pregunta indique diferente, todas las respuestas a preguntas escritas deben presentarse en
+un documento formato pdf, el cual haya sido generado mediante Latex. Este laboratorio
+debe ser elaborado en parejas.}
+
+\section*{Tarea \#1 (0\%)}
+
+Llenar el formulario ubicado aqui: \url{https://goo.gl/forms/2bu65BEKbiIIDAs12}. Solamente
+es necesario llenar el formulario una vez por pareja.
+
+\section*{Tarea \#2 (100\%)}
+
+Modifique el programa ubicado en \emph{clases/ejemplos/HelloWorld} de la siguiente manera:
+
+\begin{enumerate}
+\item{Crear un archivo llamado ``Mensaje1.hh'', los archivos con terminaci\'on ``.hh''
+se les conoce como archivos de declaraciones.
+    \begin{enumerate}
+        \item{Utilizar la directiva \texttt{\#define} para crear un \emph{macro} llamado
+        ``MENSAJE1'' y darle como valor un mensaje cualquiera.}
+        \item{Utilizar la directiva \texttt{\#include} en el archivo ``HelloWorld.cc''
+        para incluir el archivo ``Mensaje1.hh''}
+    \end{enumerate}
+}
+\item{Crear un archivo llamado ``Valor1.hh'':
+    \begin{itemize}
+        \item{Utilizar la directiva \texttt{\#define} para crear un \emph{macro} llamado
+        ``VALOR1'' y darle un valor numerico entero arbitrario.}
+    \end{itemize}
+}
+\item{Crear un archivo llamado ``Valor2.hh'':
+\begin{itemize}
+    \item{Utilizar la directiva \texttt{\#define} para crear un \emph{macro} llamado
+    ``VALOR2'' y darle un valor numerico entero arbitrario.}
+\end{itemize}
+}
+\item{Crear un archivo llamado ``Valor3.hh'':
+\begin{itemize}
+    \item{Utilizar la directiva \texttt{\#include} para incluir los archivos
+    ``Valor1.hh'' y ``Valor2.hh'' en este archivo}
+    \item{Utilizar la directiva \texttt{\#define} para crear un \emph{macro} llamado
+    ``VALOR3'' y darle como valor \texttt{VALOR1 + VALOR2}}
+\end{itemize}
+}
+\item{En el archivo ``HelloWorld.cc'' hacer las siguietnes modificaci\'ones:
+\begin{enumerate}
+    \item{Luego de la linea que imprime el mensaje ``Hello, World'', llamar la funci\'on
+    \texttt{printf} con los los parametros \texttt{"\%s, \%i\textbackslash n"}, \texttt{MENSAJE1} y \texttt{VALOR3}}
+    \item{Corriga el error de compilaci\'on que se le presenta y asegurese que su programa
+    funcione correctamente.}
+\end{enumerate}
+}
+
+\end{enumerate}
+
+\end{document}
