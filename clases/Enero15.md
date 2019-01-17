@@ -5,3 +5,4 @@
 * El editor utilizado en clase es Visual Studio Code (https://code.visualstudio.com/)
 * Se utilizara la extension de C/C++ para visual studio code (https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
 * Se utilizara git para control de versiones (https://git-scm.com/docs)
+* En windows, es necesario instalar el Windows SDK (https://developer.microsoft.com/en-US/windows/downloads/windows-10-sdk)
