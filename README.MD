@@ -39,6 +39,12 @@
 * Incluye la lectura semanal (ver el programa del curso) y cualquier
   tema que ya se haya estudiado previamente.
 
+## Grabaciones de la clase
+
+Se grabara la pantalla en algunas de las sessiones de clase para asistir
+con el desarrollo y compilacion de codigo. Las grabaciones se encuentran
+en: https://www.youtube.com/playlist?list=PLSe2e7FcbWV-tdqmE_EfzrK7YGlSMARhS
+
 ## Literatura
 
 * B. Stroustrup, The C++ Programming Language, 4ta Edicion, Addison-Wesley (Texto primario)
