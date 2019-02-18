@@ -1,0 +1,159 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\newcommand\doubleplus{\ensuremath{\mathbin{+\mkern-10mu+}}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.cs}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../../recursos/logo.png}} & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica II \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Laboratorio \#4} \\
+        \large{Fecha de entrega: 21 de Febrero, 2019 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una carpeta llamada "Laboratorio \#3".
+Al menos que la pregunta indique diferente, todas las respuestas a preguntas escritas deben presentarse en
+un documento formato pdf, el cual haya sido generado mediante Latex. Este laboratorio
+debe ser elaborado en parejas.}
+
+\section*{Tarea \#1 (25\%)}
+
+En C++ existen dos maneras de pasar parametros a un metodo: \emph{por valor}
+o \emph{por referencia}. En el codigo adjunto (``Tarea1.cc'') hay una funcion
+llamada ``porValor'' y otra llamada ``porReferencia'' que utilizan estas formas
+de pasar parametros. Explique mediante comentarios en el codigo por que al
+final de la ejecuci\'on del programa, la variable ``valor1'' permanece
+con el valor 0 mientras que la variable ``valor2'' tiene valor de 42.
+
+\section*{Tarea \#2 (25\%)}
+
+Un \emph{vector espacial} representa un punto en un espacio fisico. Dicho
+vector se puede representar como una \emph{lista ordenada} de numeros. Nosotros
+utilizaremos arreglos para representar dichos vectores. La cantidad de entradas
+que tiene un vector se le conoce como la \emph{dimensionalidad del vector}, tambien
+llamado ``numero de dimensiones``. Por ejemplo, el vector $\langle 4,5,3 \rangle$
+es un vector de 3 dimensiones que se representaria con un arreglo $\mathtt{int}\ x=\{4,5,3\};$.
+\\\\
+El \emph{produto punto} entre dos vectores esta definido asi: $\bar x\cdot \bar y:=\sum_{i=0}^{dims}\bar x_i*\bar y_i$. Defina una funci\'on \\``$\mathtt{float}\ productoPunto(\mathtt{const\ float*}\ x,\ \mathtt{const\ float*}\ y,\ \mathtt{const\ int}\ dims)$'' que
+calcule el producto punto entre dos vectores de dimensiones indicadas por el
+parametro $dims$.
+
+\section*{Tarea \#3 (25\%)}
+Si el producto punto entre dos vectores es cero (0). Se dice que los vectores
+son \emph{ortogonales}. Defina la funci\'on ``$\mathtt{bool}\ sonOrtogonales(\mathtt{const\ float*}\ x,\ \mathtt{const\ float*}\ y,\ \mathtt{int}\ dims)$ que determine si dos vectores son ortogonales o no. Esta funci\'on debe
+considerar dos vectores ortogonales si el producto punto es cero redondeado a
+{\bf dos posiciones decimales}.
+
+\section*{Tarea \#4 (25\%)}
+
+Un conjunto de vectores $\mathbf{V}$ se considera una ``base de espacio vectorial''
+si:
+\begin{enumerate}
+    \item{El numero de vectores en $\mathbf{V}$ es el mismo que la dimension
+    de los vectores.}
+    \item{Todos los vectores de $\mathbf{V}$ son ortogonales entre si}
+\end{enumerate}
+Defina la funci\'on ``$\mathtt{bool}\ esBase(\mathtt{const\ float**}\ vectores,\ \mathtt{const\ int}\ dims)$'' la cual determina si un conjunto de vectores de
+dimension ``$dims$'' es una base de un espacio vectorial. Pede hacer uso de la
+propiedad $\bar x\cdot\bar y=0\wedge\ \bar y\cdot\bar z=0\Rightarrow \bar x\cdot\bar z = 0$ para que su codigo sea mas compacto.
+
+\end{document}
