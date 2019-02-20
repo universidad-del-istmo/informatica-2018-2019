@@ -1,0 +1,187 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\newcommand\doubleplus{\ensuremath{\mathbin{+\mkern-10mu+}}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.cs}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../../recursos/logo.png}} & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica II \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Laboratorio \#5} \\
+        \large{Fecha de entrega: 28 de Febrero, 2019 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una carpeta llamada "Laboratorio \#5".
+Al menos que la pregunta indique diferente, todas las respuestas a preguntas escritas deben presentarse en
+un documento formato pdf, el cual haya sido generado mediante Latex. Este laboratorio
+debe ser elaborado en parejas.}
+
+\section*{Tarea \#1 (25\%)}
+\label{tarea1}
+
+En C++ es costumbre separar las declaraciones de clases y las implementaciones de las mismas. Adjunto a este
+laboratorio esta el archivo ``Vector2d.hh'', en el cual se declaran los \emph{metodos}
+que debe implementar la clase ``Vector2d''. Utilize el archivo ``Vector2d.cc'' adjunto para
+implementar los metodos de la clase ``Vector2d''. El constructor ha sido implementado
+como ejemplo.
+\\\\
+El metodo to\_string de la clase vector debe retornar una \emph{cadena}
+que sea una representacion del vector. Por ejemplo: ``$\langle 2,4.3 \rangle$''.
+
+\section*{Tarea \#2 (25\%)}
+Siguiendo el mismo patron de la \href{sec:tarea1}{Tarea \#1}, crear una clase llamada
+``Vehiculo'' declarandola en un archivo de encabezados llamado ``Vehiculo.hh'' e
+implementandola en un archivo de codigo llamado ``Vehiculo.cc''.
+
+El constructor de esta clase no debe recibir ningun parametro, sin embargo
+debe tener dos miembros \emph{privados} llamados ``Velocidad'' y ``Posici\'on''
+de tipo ``Vector2d''. Ambos deben inicializarse con las coordenadas (0,0).
+\\\\
+Declarar dos metodos:
+\begin{itemize}
+        \item{$getVelocidad\ :\ \mathtt{void}\rightarrow\mathtt{Vector2d}$}
+        \item{$getPosicion\ :\ \mathtt{void}\rightarrow\mathtt{Vector2d}$}
+\end{itemize}
+Estos metodos deben retornar la posici\'on y velocidad respectivamente. Por ulitmo,
+declarar un metodo ``$to\_string\ :\ \mathtt{void}\rightarrow \mathtt{const\ std::string}$'' que retorne una representaci\'on legible del
+vehiculo que muestre la velocidad y posici\'on de dicho vehiculo. Recuerde que debe utilizar
+la directiva ``$\mathtt{\#include\ <string>}$'' para poder retornar valores de tipo \emph{string}.
+Se recomienda que este metodo utilize el metodo ``to\_string'' de los vectores del vehiculo
+para facilitar crear la cadena resultante.
+
+\section*{Tarea \#3 (20\%)}
+Declarar en la clase ``Vehiculo'' el metodo $acelerar\ :\ \mathtt{const\ Vector2d\&}\rightarrow\mathtt{const\ float}\rightarrow \mathtt{void}$.
+Este metodo debe acelerar el vehiculo con la aceleraci\'on correspondiente al primer
+parametro siendo ese vector el cambio de velocidad por segundo. Dicha aceleraci\'on
+debe ser aplicada durante el tiempo indicado por el segundo parametro. Al finalizar la
+ejecuci\'on de este metodo, tanto la velocidad como la posici\'on del vehiculo deben
+actualizarse tal que correspondan a la aceleraci\'on que tuvo el vehiculo.
+\\\\
+Recuerde que la el archivo que declara la clase ``Vehiculo'' debe incluir la
+directiva $\mathtt{\#include\ ``Vector2d.hh''}$ para poder utilizar la clase
+''Vector2d''.
+
+\section*{Tarea \#4 (20\%)}
+Declarar en la clase ``Vehiculo'' el metodo ``$avanzar\ :\ \mathtt{const float}\rightarrow\mathtt{void}$''.
+Este metodo debe utilizar la velocidad del vehiculo para moverlo durante la cantidad de tiempo que
+se dio como parametro. Luego de la ejecuci\'on de este metodo, la posici\'on del vehiculo
+debe corresponder al movimiento durante el tiempo dado como primer paramtero.
+
+\section*{Tarea \#5 (10\%)}
+Crear un archivo llamado ``main.cc''. En este arhivo debe declarar el
+metodo \emph{main} a partir del cual se inica la ejecuci\'on del programa.
+Este metodo debe hacer lo siguiente:
+\begin{enumerate}
+        \item{Crear una \emph{instancia} de un vehiculo}
+        \item{Acelerarlo en la direcci\'on (3,1) durante 5 segundos}
+        \item{Mover el vehiculo a velocidad constante durante 10 segundos}
+        \item{Imprimir el estado actual del vehiculo utilizando su metodo ``to\_string''}
+        \item{Acelerar el vehiculo en la direcci\'on (-7.2, 8) durante 4 segundos}
+        \item{Mover el vehiculo a velocidad constante durante 9 segundos}
+        \item{Imprimir el estado actual del vehiculo utilizando el metodo ``to\_string''} 
+\end{enumerate}
+El archivo ``main.cc'' debe incluir los archivos ``Vector2d.hh'' y ``Vehiculo.hh''
+para poder utilizar las clases ``Vehiculo''y ``Vector2d''. El compilador (clang++)
+necesita que todos los archivos de codigo sean especificados para llevar a cabo
+la compilaci\'on por lo cual se debe compilar mediante el comando ``clang++ Vehiculo.cc 
+Vector.cc main.cc''.
+
+\end{document}
