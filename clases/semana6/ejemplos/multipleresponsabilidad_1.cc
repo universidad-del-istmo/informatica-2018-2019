@@ -6,8 +6,6 @@ class Vector2d{
     Vector2d operator*(float valor) const{
         return {x * valor, y * valor};
     };
-
-    private:
     float x;
     float y;
 };
@@ -16,17 +14,15 @@ class Vehiculo{
 
     public:
     void avanzar(float t){
-        float dX = velX * t;
-        float dY = velY * t;
-        posX = posX + dX;
-        posY = posY + dY;
+        float dX = vel.x * t;
+        float dY = vel.y * t;
+        pos.x = pos.x + dX;
+        pos.y = pos.y + dY;
     }
 
     private:
-    float posX;
-    float posY;
-    float velX;
-    float velY;
+    Vector2d pos;
+    Vector2d vel;
 };
 
 class Planeta{
@@ -35,13 +31,11 @@ class Planeta{
 
     void avanzar(const Vector2d& gravedad){
         const Vector2d deltaVelocidad = gravedad*instante;
-        posX = posX + velX*instante;
-        posY = posY + velY*instante;
+        pos.x = pos.x + vel.x*instante;
+        pos.y = pos.y + vel.y*instante;
     }
 
     const float instante = 0.01;
-    float posX;
-    float posY;
-    float velX;
-    float velY;
+    Vector2d pos;
+    Vector2d vel;
 };
