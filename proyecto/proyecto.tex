@@ -1,0 +1,177 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.cs}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../recursos/logo.png}} & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica 1 \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Proyecto Final: Boxworld} \\
+        \large{Fecha de entrega: 01 de Mayo, 2019 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una carpeta llamada "Proyecto Final".
+Al menos que la pregunta indique diferente, todas las respuestas a preguntas escritas deben presentarse en
+un documento formato pdf, el cual haya sido generado mediante Latex. }
+\\\\
+A continuaci\'on se presenta el proyecto final. El objetivo de dicho proyecto es poner
+en practica lo aprendido durante el curso para crear un juego interactivo. El objetivo
+es que usted cree una versi\'on propia y simplificada del juego ``Boxworld''. Puede
+encontrar un ejemplo del juego en \url{http://wallofgame.com/free-online-games/arcade/921/Boxworld.html}.
+\section*{Informaci\'on Administrativa}
+El proyecto se puede elaborar en grupos de un maximo de 3 integrantes. Por favor ingresar
+a \url{https://goo.gl/forms/XpUXU6mkl9qGqDIC2} y llenar el formulario de participaci\'on.
+Solamente es necesario un formulario por grupo.
+\\\\
+El proyecto tiene un valor total de 30\% del curso de los cuales un 10\% se le abonaran
+a la zona y un 20\% como la parte practica del examen final. Adicionalmente, puede
+obtener hasta un 10\% extra por entregas que excedan el minimo.
+
+\section*{Entrega}
+Debe crear un programa que implemente {\bf fielmente} la mecanica del juego ``Boxworld''.
+Su programa debe incluir al menos un nivel el cual se debe poder jugar y completar.
+Solamente es necesaria una interfaz de consola, lo cual significa que puede utilizar
+caracteres arbitrarios para dibujar el mapa, personaje, cajas y sitios donde se debe
+colocar la caja. Su programa debe implementar las reglas del juego tal y como las
+implementa el juego ejemplar.
+\\\\
+Se evaluara el uso de buenas practicas de desarrollo de software, esto incluye:
+\begin{itemize}
+        \item{Utilizaci\'on de clases y objetos para abstraer y modelar el programa}
+        \item{Manejo adecuado de memoria}
+        \item{Validaci\'on apropiada de indices al utilizar arreglos}
+        \item{Encapsulaci\'on correcta de el estado de la clase}
+        \item{Utilizar tipos enumerados para expresar el significado de estados}
+\end{itemize}
+El proyecto debe ser entregado a traves de Git, en el repositorio que usted
+indique en el formulario. Adicionalmente habra una presentaci\'on oral en grupo
+en la cual el programa debe ser explicado por los integrantes y habran preguntas
+directas a cada uno de los integrantes acerca del codigo. Las preguntas pueden
+ser de {\bf cualquier parte del codigo} y seran dirigidas a una persona en
+perticular. A pesar de ser un trabajo en grupo, la nota final sera individual
+ya que estara ponderada por su conocimiento individual del codigo.
+\section*{Extras}
+Tiene la opci\'on de agregar funcionalidad extra a cambio de un mejor punteo.
+Esto incluye (pero no se limita a):
+\begin{itemize}
+        \item{Utilizar una biblioteca grafica en vez de la consola (como \href{https://www.qt.io/}{QT}).}
+        \item{Multiples niveles}
+        \item{Cargar niveles desde archivos almacenados en el ordenador}
+        \item{Utilizar el lenguaje \href{https://www.rust-lang.org/}{Rust} en vez de C++}
+        \item{Musica de fondo mientras se juega}
+        \item{Utilizaci\'on de bibliotecas (como \href{https://www.boost.org/}{Boost})
+        para apoyar el processo de desarrollo.}
+        \item{Utilizaci\'on correcta de punteros inteligentes (\url{https://en.cppreference.com/w/cpp/memory})}
+\end{itemize}
+
+\section*{Proyectos Alternativos}
+Si lo desea, es possible elaborar otro programa en vez de ``Boxworld''. Por favor
+hablarme personalmente si desea hacer esto.
+
+\section*{Honestidad y \'Etica}
+El trabajo es grupal y debe ser realizado en su totalidad por los integrantes del
+grupo. Si este proyecto es copiado o es programado por otras personas que no son
+integrantes del grupo, se otorgara 0\% como nota y sera reportado a la Facultad
+de Inegineria.
+
+\end{document}
