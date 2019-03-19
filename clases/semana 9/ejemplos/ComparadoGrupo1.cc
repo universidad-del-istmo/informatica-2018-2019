@@ -1,7 +1,7 @@
 #include <string>
 
 #include "Comparador.hh"
-
+//Carlos Solares, gabriel chavarria,Sliven Carranza, Jorge Marroquin, Juan Cáceres
 class AlfaAsc : public Comparador{
 
     public:
