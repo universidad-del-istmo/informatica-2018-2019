@@ -10,7 +10,7 @@ class AlfaAsc : public Comparador{
     }
 
     virtual Orden comparar(const std::string& s1, const std::string& s2) const override{
-        int tam = s1.size() < s2.size() ? s1.size() : s2.size();
+        int tam = s1.size() > s2.size() ? s1.size() : s2.size();
 
         for(int i = 0; i < tam; i++){
 
