@@ -34,17 +34,6 @@ class AlfaAsc : public Comparador{
         return Orden::IG;
     }
 };
-
-class Long: public Comparador{
-    virtual Orden comparar(const std::string& s1, const std::string& s2) const override{
-        if (s1.size<s2.size){
-                return Orden::MEQ;
-        }else if(s1.size>s2.size){
-            return Orden::MAQ;
-        }
-        return Orden::IG;
-    }
-}
 std::string* minimo(Comparador& comparador, std::string strs[], int size){
     if(size <= 0){
         return NULL;
