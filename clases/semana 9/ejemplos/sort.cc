@@ -1,37 +1,41 @@
 #include <string>
 
-enum Comparar{
-    MEQ,
-    IG,
-    MAQ
-};
+#include "Comparador.hh"
 
-Comparar comparar(const std::string& s1, const std::string& s2){
-    int tam = std::max<int>(s1.size(), s2.size());
+class AlfaAsc : public Comparador{
 
-    for(int i = 0; i < tam; i++){
-
-        if(i >= s1.size()){
-            return Comparar::MEQ;
-        }
-
-        if(i >= s2.size()){
-            return Comparar::MAQ;
-        }
-
-        if(s1[i] < s2[i]){
-            return Comparar::MEQ;
-        }
-
-        if(s1[i] > s2[i]){
-            return Comparar::MAQ;
-        }
+    public:
+    virtual ~AlfaAsc(){
+        printf("Se destruyo\n");
     }
 
-    return Comparar::IG;
-}
+    virtual Orden comparar(const std::string& s1, const std::string& s2) const override{
+        int tam = std::max<int>(s1.size(), s2.size());
 
-std::string* minimo(std::string strs[], int size){
+        for(int i = 0; i < tam; i++){
+
+            if(i >= s1.size()){
+                return Orden::MEQ;
+            }
+
+            if(i >= s2.size()){
+                return Orden::MAQ;
+            }
+
+            if(s1[i] < s2[i]){
+                return Orden::MEQ;
+            }
+
+            if(s1[i] > s2[i]){
+                return Orden::MAQ;
+            }
+        }
+
+        return Orden::IG;
+    }
+};
+
+std::string* minimo(Comparador& comparador, std::string strs[], int size){
     if(size <= 0){
         return NULL;
     }
@@ -39,7 +43,7 @@ std::string* minimo(std::string strs[], int size){
     std::string* resultado = strs;
 
     for(int i = 1; i<size; i++){
-        if(comparar(strs[i], *resultado) == Comparar::MEQ){
+        if(comparador.comparar(strs[i], *resultado) == Orden::MEQ){
             resultado = &strs[i];
         }
     }
@@ -54,7 +58,13 @@ int main(int argc, char** argv){
         strs[i - 1] = std::string(argv[i]);
     }
 
-    printf("El primer string %s.\n", minimo(strs, argc -1)->c_str());
+    Comparador* cmp = new AlfaAsc();
+    printf("El string menor alfabeticamente es '%s'.\n", minimo(*cmp, strs, argc -1)->c_str());
+    delete cmp;
+
+    Comparador* cmp2 = NULL;
+    printf("El string menor por longitud es '%s'", minimo(*cmp2, strs, argc - 1)->c_str());
+    delete cmp2;
 
     return 0;
 }
