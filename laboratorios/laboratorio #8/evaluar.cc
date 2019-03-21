@@ -11,7 +11,7 @@ int main(){
     }
 
     if(evaluar(sem2, ex1, resultado)){
-        // Impirme: "El resultado es '1'"
+        // Impirme: "El resultado es '2'"
         printf("El resultado es '%i'", resultado);
     }
 
