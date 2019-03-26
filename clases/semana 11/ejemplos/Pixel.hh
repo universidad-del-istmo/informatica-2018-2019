@@ -7,9 +7,7 @@ class Pixel{
 
     Pixel operator+(const Pixel& otro) const;
 
-    Pixel operator-(const Pixel& otro) const{
-        return Pixel(otro.x - x, otro.y - y);
-    }
+    Pixel operator-(const Pixel& otro) const;
 
     Pixel operator*(const double otro) const;
 };
