@@ -1,0 +1,152 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\newcommand\doubleplus{\ensuremath{\mathbin{+\mkern-10mu+}}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../../recursos/logo.png}} & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica II \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Laboratorio \#8} \\
+        \large{Fecha de entrega: 28 de Marzo, 2019 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una carpeta llamada "Laboratorio \#8".
+Al menos que la pregunta indique diferente, todas las respuestas a preguntas escritas deben presentarse en
+un documento formato pdf, el cual haya sido generado mediante Latex. Este laboratorio
+debe ser elaborado en parejas.}
+
+\section*{Tarea \#1 (20\%)}
+
+Definir una funcion llamada ``$\mathtt{bool}\ parseInt(\mathtt{const\ std::string\&}\ valor,\ \mathtt{int\&}\ resultado)$'' la
+cual debe aceptar un {\bf string} y lo intenta convertir a un numero entero y almacena ese entero en la referencia
+``resultado'' que se provee como parametro. A continuaci\'on se muestra un ejemplo del comportamiento
+de dicha funci\'on.
+\perlscript{parseInt.cc}{Tarea 1}
+
+\section*{Tarea \#2 (20\%)}
+
+Definir una clase virtual llamada ``Semantica'' con los siguientes metodos virtuales:
+\begin{itemize}
+        \item{$\mathtt{bool}\ parse(\mathtt{const\ std::string}\ valor,\ \mathtt{int\&}\ resultado)\ \mathtt{const}$}
+        \item{$\mathtt{int}\ opSuma(\mathtt{const\ int}\ arg1,\ \mathtt{const\ int}\ arg2)\ \mathtt{const}$}
+        \item{$\mathtt{int}\ opProducto(\mathtt{const\ int}\ arg1,\ \mathtt{const\ int}\ arg2)\ \mathtt{const}$}
+\end{itemize}
+
+\section*{Tarea \#3 (20\%)}
+Defina las clases ``Arith'' y ``ZArith'' las cuales deben implementar la clase virtual ``Semantica''.
+\\\\
+La clase ``Arith'' debe utilizar la funci\'on ``parse'' para implementar el metodo ``parse''. El metodo
+``opSuma'' simplemente debe sumar sus parametros y el metodo ``opMult'' debe multiplicar sus parametros.
+\\\\
+La clase ``ZArith'' debe tener un constructor que toma un parametero numerico llamado ``base''. Esta clase
+debe comportarse exactamente igual que ``Arith'' pero sus metodos deben aplicar la operaci\'on ``modulo (\%)''
+a todos los resultados de sus metodos siendo ``base'' el segundo parametro a la operaci\'on ``modulo''. 
+
+\section*{Tarea \#4 (40\%)}
+
+Definir la funci\'on ``$bool\ evaluar(\mathtt{const\ Semantica\&},\ \mathtt{const\ std::string\&}\ expression,\ \mathtt{int\&}\ resultado)$''.
+Esta funci\'on acepta como parametro la semantica que se utilizara para evaluar la expresi\'on que se provee
+en el parametro expressi\'on. El resultado, si la evaluaci\'on es exitosa, debe ser colocado en el parametro
+``resultado'' y debe retornar {\bf true} si la evaluaci\'on fue exitosa o {\bf false} de lo contrario. El codigo
+a continuaci\'on ejemplifica como debe comportarse dicha funci\'on:
+\perlscript{evaluar.cc}{Tarea \#4}
+\end{document}

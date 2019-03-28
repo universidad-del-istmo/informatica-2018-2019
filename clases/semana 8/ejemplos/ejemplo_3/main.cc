@@ -20,7 +20,7 @@ int main(){
     v[1] = 5;
     v[2] = -8;
 
-   printf("El resultado es %f.\n", promedio(v));
+    printf("El resultado es %f.\n", promedio(v));
 
     Lista lista(2);
     lista.valor() = 5;
