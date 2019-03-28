@@ -34,7 +34,6 @@ class AlfaAsc : public Comparador{
         return Orden::IG;
     }
 };
-
 std::string* minimo(Comparador& comparador, std::string strs[], int size){
     if(size <= 0){
         return NULL;
