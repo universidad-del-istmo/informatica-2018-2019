@@ -13,5 +13,8 @@ int main(){
         printf("Se almaceno ''%s''\n", valor.c_str());
         it->siguiente();
     }
+
+    printf("La facultad es ''%s''\n", strs["Facultad"].c_str());
+
     delete it;
 }
