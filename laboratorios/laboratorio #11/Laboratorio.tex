@@ -1,0 +1,174 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{multirow}
+\usepackage{hyperref}
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{c} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=[sharp]c, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\newcommand\doubleplus{\ensuremath{\mathbin{+\mkern-10mu+}}}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1}
+\end{itemize}
+}
+
+\begin{document}
+
+\begin{tabular}{l l}
+\multirow{5}{*}{\includegraphics[width=2cm]{../../recursos/logo.png}} & Universidad del Istmo de Guatemala \\
+ & Facultad de Ingenieria \\
+ & Ing. en Sistemas \\
+ & Informatica II \\
+ & Prof. Ernesto Rodriguez - \href{mailto:erodriguez@unis.edu.gt}{erodriguez@unis.edu.gt} \\
+\end{tabular}
+\\\\\\
+
+\begin{center}
+        \horrule{0.5pt}
+        \huge{Laboratorio \#11} \\
+        \large{Fecha de entrega: 25 de Abril, 2019 - 11:59pm} \\
+        \horrule{1pt}
+\end{center}
+
+\emph{Instrucciones: Resolver cada uno de los ejercicios siguiendo sus respectivas
+instrucciones. El trabajo debe ser entregado a traves de Github, en su repositorio del curso, colocado en una carpeta llamada "Laboratorio \#11".
+Al menos que la pregunta indique diferente, todas las respuestas a preguntas escritas deben presentarse en
+un documento formato pdf, el cual haya sido generado mediante Latex. Este laboratorio
+debe ser elaborado en parejas.}
+
+\section*{Tarea \#1 (50\%)}
+
+La funci\'on \emph{fold} es una funci\'on universal que permite replicar
+cualquier transformaci\'on de una collecion de elementos de forma general.
+Su tipo es el siguiente:
+\[
+        \forall T\forall S\ .\ S\ fold(\mathtt{std::functcion}\langle S(S,T)\rangle,\ S,\ \mathtt{std::vector}\langle T\rangle) 
+\]
+
+Essencialmente, esta funcion toma como parametros una collecion, de valores, un valor inicial
+y una funci\'on que le permite combinar un valor del mismo tipo que el valor inicial y un
+valor de la coleccion y producir un valor del mismo tipo que el valor inicial. Este processo
+se repeite hasta haber consumido todos los valores de la collecion y se haya creado el producto
+final. Un ejemplo de su utilizaci\'on es el siguiente:
+
+\perlscript{fold.cc}{}
+
+\section*{Tarea \#2 (50\%)}
+
+La funci\'on \emph{existe} es una funci\'on que permite buscar si un objeto existe dentro de una
+colleci\'on. Su tipo es el siguiente:
+\[
+        \forall T\ .\ \mathtt{bool}\ existe(\mathtt{std::function}\langle \mathtt{bool}(T)\rangle,\ \mathtt{std::vector}\langle T \rangle)
+\]
+Esta funci\'on acepta un validador y una coleccion de objetos y aplica el validador en cada uno
+de los objetos. Si alguno de esos objetos pasa la validaci\'on, la funci\'on retorna \texttt{true},
+de lo contrario retorna \texttt{false}. A continuaci\'on se muestra un ejemplo de su utilizaci\'on:
+\perlscript{find.cc}{}
+
+Su tarea es utilizar la func\'on \emph{fold} para implementar la funci\'on \emph{existe}.
+
+\section*{Extra \#1 (+2 puntos neto)}
+
+En C++ es possible utilizar cualquier objeto que tenga un metodo llamado \emph{operator()} como
+si fuese funci\'on. Por ejemplo:
+\perlscript{operator.cc}{}
+
+Sin embargo, la funci\'on \emph{fold}, tal como fue implementada en la tarea \#1 tiene la limitante
+que solo puede ser utilizada con instancias de \texttt{std::function}. En otras palabras, el siguiente
+codigo no compila:
+\perlscript{mal.cc}{}
+
+Debido a que \emph{fold} ha sido llamado con una instancia de \emph{Sumar} en vez de una instancia
+de \texttt{std::funciton}. Su tarea es crear una version de \emph{fold} que pueda funcionar con
+objetos de {\bf cualquier} tipo siempre y cuando se puedan operar mediante el \emph{operator()}. 
+
+\section*{Extra \#2 (+2 puntos neto)}
+
+Cuando se trabajan proyectos grandes en C++, se acostumbra a automatizar el proceso de compilaci\'on
+debido a que el numero de archivos involucrados suele cambiar constantemente. Una herramienta
+para facilitar el manejo de proyectos grandes es \href{https://cmake.org}{cmake}. Su tarea es
+configurar un archivo CMake para compilar un programa de C++ que utilize el codigo de esta
+hoja de trabajo. Como entrega, debe incluir el archivo ``CMakeLists.txt'' en su entrega con
+las instrucciones para compilar un ejecutable. Se puede apoyar de \url{https://cmake.org/examples/}
+y \url{https://cmake.org/cmake/help/v3.14/manual/cmake-buildsystem.7.html#introduction} para
+informaci\'on sobre como utilizar cmake.
+
+\end{document}
